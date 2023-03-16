@@ -38,17 +38,17 @@ exports.loginTeam = catchAsyncErrors(async (req, res, next) => {
 
 exports.addPlayer = catchAsyncErrors(async (req, res, next) => {
   const { players } = req.body;
-  const team = await Team.findById(req.params.id);
+  const user = await Team.findById(req.params.id);
   let flag = 0;
-  if (!team) {
+  if (!user) {
     return next(new ErrorHandler("No team found", 400));
   }
 
   players.forEach((player) => {
-    if (team.players.length === 0) {
-      team.players.push(player);
+    if (user.players.length === 0) {
+      user.players.push(player);
     } else {
-      team.players.forEach((p) => {
+      user.players.forEach((p) => {
         if (p.jerseyNo === player.jerseyNo) {
           flag = 1;
           return next(
@@ -59,21 +59,21 @@ exports.addPlayer = catchAsyncErrors(async (req, res, next) => {
           );
         }
       });
-      team.players.push(player);
+      user.players.push(player);
     }
   });
   if (flag === 0) {
-    await team.save({ validateBeforeSave: false });
+    await user.save({ validateBeforeSave: false });
   }
 
-  res.status(200).json(team);
+  res.status(200).json(user);
 });
 
 //Get Team details
 exports.getTeamDetails = catchAsyncErrors(async (req, res, next) => {
-  const team = await Team.findById(req.params.id);
-  if (!team) {
+  const user = await Team.findById(req.params.id);
+  if (!user) {
     return next(new ErrorHandler("No teams found", 400));
   }
-  res.status(200).json(team);
+  res.status(200).json(user);
 });

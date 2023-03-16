@@ -28,7 +28,7 @@ exports.loginOrganiser = catchAsyncErrors(async (req, res, next) => {
   const isPasswordMatched = await user.comparePassword(password);
 
   if (!isPasswordMatched) {
-    return next(new ErrorHandler("Invalid email or password", 401));
+    return next(new ErrorHandler("Invalid  password", 401));
   }
 
   res.status(200).json(user);
@@ -36,9 +36,9 @@ exports.loginOrganiser = catchAsyncErrors(async (req, res, next) => {
 
 //Get Organiser Detail
 exports.getOrganiserDetails = catchAsyncErrors(async(req,res,next)=>{
-    const org = await Organiser.findById(req.params.id);
-    if(!org){
+    const user = await Organiser.findById(req.params.id);
+    if(!user){
         return next(new ErrorHandler("No Organizer Found",400))
     }
-    res.status(200).json(org)
+    res.status(200).json(user)
 })
