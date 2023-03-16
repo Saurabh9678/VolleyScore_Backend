@@ -8,10 +8,12 @@ const {
 
 const router = express.Router();
 
-router.route("/match/:code").get(getMatchDetail).post(startRoom);
+router.route("/match/:code").get(getMatchDetail);
 
-router.route("/createRoom/:id").post(createRoom);
+router.route("/startRoom/:code").get(startRoom);
 
-router.route("/joinRoom/:code/:id").post(joinRoom);
+router.route("/createRoom/:id").get(createRoom);
+
+router.route("/joinRoom/:code/:id").get(joinRoom);
 
 module.exports = router;
