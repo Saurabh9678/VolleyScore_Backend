@@ -1,10 +1,16 @@
-const express = require("express")
-const {loginOrganiser,registerOrganiser} = require("../controllers/organiserController")
+const express = require("express");
+const {
+  loginOrganiser,
+  registerOrganiser,
+  getOrganiserDetails,
+} = require("../controllers/organiserController");
 
 const router = express.Router();
 
 router.route("/registerOrganiser").post(registerOrganiser);
 
-router.route("/loginOrganiser").post(loginOrganiser)
+router.route("/loginOrganiser").post(loginOrganiser);
 
-module.exports = router
+router.route("/organiser/:id").get(getOrganiserDetails);
+
+module.exports = router;

@@ -33,3 +33,12 @@ exports.loginOrganiser = catchAsyncErrors(async (req, res, next) => {
 
   res.status(200).json(user);
 });
+
+//Get Organiser Detail
+exports.getOrganiserDetails = catchAsyncErrors(async(req,res,next)=>{
+    const org = await Organiser.findById(req.params.id);
+    if(!org){
+        return next(new ErrorHandler("No Organizer Found",400))
+    }
+    res.status(200).json(org)
+})

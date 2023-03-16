@@ -36,6 +36,7 @@ const teamSchema = new mongoose.Schema({
     {
       match: {
         type: mongoose.Schema.ObjectId,
+        ref:"Match"
       },
     },
   ],
