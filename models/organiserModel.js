@@ -27,7 +27,9 @@ const organiserSchema = new mongoose.Schema({
     {
       match: {
         type: mongoose.Schema.ObjectId,
+        ref:"Match"
       },
+      
     },
   ],
   role: { type: String, default: "organiser" },

@@ -1,6 +1,7 @@
 const ErrorHandler = require("../utils/errorHandler.js");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors.js");
 const Team = require("../models/teamModel");
+const Match = require("../models/matchModel")
 
 //Register Organiser
 exports.registerTeam = catchAsyncErrors(async (req, res, next) => {
@@ -77,3 +78,20 @@ exports.getTeamDetails = catchAsyncErrors(async (req, res, next) => {
   }
   res.status(200).json(user);
 });
+
+//Get all match Details
+exports.getAllMatchDetails = catchAsyncErrors(async (req, res, next) => {
+  const user = await Team.findById(req.params.id);
+  if (!user) {
+    return next(new ErrorHandler("No Team Found", 400));
+  }
+  let mat = [];
+  await Promise.all(user.matches.map(async (m) => {
+    const match = await Match.findById(m._id);
+    mat.push(match); 
+  }));
+
+  res.status(200).json(mat);
+});
+
+

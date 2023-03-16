@@ -4,7 +4,9 @@ const matchSchema = new mongoose.Schema({
   code: { type: String, trim: true },
   organiser: { type: mongoose.Schema.ObjectId, ref: "Organiser" },
   team_no_1: { type: mongoose.Schema.ObjectId, ref: "Team" },
+  team_no_1_joined:{type:Number,default:0},
   team_no_2: { type: mongoose.Schema.ObjectId, ref: "Team" },
+  team_no_2_joined:{type:Number,default:0},
   sets: [
     {
       set_no: {
