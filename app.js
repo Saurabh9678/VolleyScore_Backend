@@ -7,11 +7,11 @@ app.use(express.json());
 
 
 //Route Imports
-// const userRoutes = require("./routes/userRoute");
-// const contentRoutes = require("./routes/contentRoute");
+ const organiserRoutes = require("./routes/organiserRoutes");
+ const teamRoutes = require("./routes/teamRoutes");
 
-// app.use("/api/v1", userRoutes);
-// app.use("/api/v1", contentRoutes);
+ app.use("/api/v1", organiserRoutes);
+ app.use("/api/v1", teamRoutes);
 
 // MiddleWare for Error
 
