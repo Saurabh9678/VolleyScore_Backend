@@ -4,6 +4,7 @@ const Match = require("../models/matchModel");
 const Organiser = require("../models/organiserModel")
 const Team = require("../models/teamModel")
 
+
 //Get Match detail
 exports.getMatchDetail = catchAsyncErrors(async(req,res,next)=>{
     const match = await Match.findOne({code: req.params.code}).populate("organiser", "name _id").populate("team_no_1", "_id name players").populate("team_no_2", "_id name players")
@@ -38,21 +39,21 @@ exports.joinRoom = catchAsyncErrors(async(req,res,next)=>{
         return next(new ErrorHandler("No match Found",400))
     }
     if(match.team_no_1_joined===0){
-        match.team_no_1 = id;
-        match.team_no_1_joined =1;
+        match.team_no_1 = id
+         match.team_no_1_joined = 1;
     }else{
         if(match.team_no_2_joined===0){
-            match.team_no_2 = id;
+            match.team_no_2 = id
             match.team_no_2_joined = 1;
         }else{
             return next(new ErrorHandler("Room full",400))
         }
     }
     await match.save({ validateBeforeSave: false })
-    const user = await Team.findById(req.params.id)
-    user.matches.push(match._id)
-    await user.save({ validateBeforeSave: false }) 
-    const mat = await Match.findOne({code}).populate("organiser", "name _id").populate("team_no_1", "_id name players").populate("team_no_2", "_id name players")
+     const user = await Team.findById(req.params.id)
+     user.matches.push(match._id)
+     await user.save({ validateBeforeSave: false }) 
+     const mat = await Match.findOne({code}).populate("organiser", "name _id").populate("team_no_1", "_id name players").populate("team_no_2", "_id name players")
     res.status(200).json(mat)
 })
 
@@ -72,14 +73,28 @@ exports.startRoom = catchAsyncErrors(async(req,res,next)=>{
     res.status(200).json(mat)
 })
 
+//Check Joined Team
+exports.checkJoinTeam = catchAsyncErrors(async(req,res,next)=>{
+    const match = await Match.findOne({code:req.params.code}).populate("team_no_1", "name").populate("team_no_2", "name")
+    if(match.team_no_1_joined===0 || match.team_no_2_joined===0){
+        return next(new ErrorHandler("All teams have not joined yet",400))
+    }
+    res.status(200).json(match)
+})
+
 //Update Score
 exports.updateScore = catchAsyncErrors(async(req,res,next)=>{
     const match = await Match.findById(req.params.id)
     const {sets} = req.body
     let set_Flag = 0;
     let p_flag = 0;
+    if(match.sets.length===0){
+        match.sets[0]=sets[0]
+    }else{
+        
+    }
     
-
-  
-    res.status(200).json(sets);
+    console.log(match.sets.length);
+    await match.save({ validateBeforeSave: false })
+    res.status(200).json(match);
 })
