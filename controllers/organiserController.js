@@ -56,6 +56,6 @@ exports.getAllMatchDetails = catchAsyncErrors(async (req, res, next) => {
     mat.push(match); 
   }));
 
-  res.status(200).json(mat);
+  res.status(200).json({matches: mat});
 });
 

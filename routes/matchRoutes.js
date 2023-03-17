@@ -4,6 +4,7 @@ const {
   getMatchDetail,
   joinRoom,
   startRoom,
+  updateScore
 } = require("../controllers/matchController");
 
 const router = express.Router();
@@ -15,5 +16,7 @@ router.route("/startRoom/:code").get(startRoom);
 router.route("/createRoom/:id").get(createRoom);
 
 router.route("/joinRoom/:code/:id").get(joinRoom);
+
+router.route("/updateScore/:id").post(updateScore)
 
 module.exports = router;
