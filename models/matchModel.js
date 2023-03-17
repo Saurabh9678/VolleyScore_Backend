@@ -27,8 +27,8 @@ const matchSchema = new mongoose.Schema({
     },
   ],
   gameStatus: {
-    type: String,
-    default: "Not started",
+    type: Number,
+    default:0,
   },
 });
 
