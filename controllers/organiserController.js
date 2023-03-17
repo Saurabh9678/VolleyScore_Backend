@@ -52,7 +52,7 @@ exports.getAllMatchDetails = catchAsyncErrors(async (req, res, next) => {
   }
   let mat = [];
   await Promise.all(user.matches.map(async (m) => {
-    const match = await Match.findById(m._id);
+    const match = await Match.findById(m._id).populate("team_no_1","name").populate("team_no_2", "name");
     mat.push(match); 
   }));
 

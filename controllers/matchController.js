@@ -78,30 +78,8 @@ exports.updateScore = catchAsyncErrors(async(req,res,next)=>{
     const {sets} = req.body
     let set_Flag = 0;
     let p_flag = 0;
-    if(sets.length===0){
-        match.sets.push(sets)
-    }else{
-        match.sets.forEach((s)=>{
-            if(s.set_no===sets.set_no){
-                set_Flag=1;
-                s.team_1_score=sets.team_1_score;
-                s.team_2_score=sets.team_2_score;
-                s.playersScore.forEach((p)=>{
-                    if(p.jerseyNo===sets.playersScore.jerseyNo){
-                        p.score=sets.playersScore.score
-                        p_flag =1;
-                    }
-                })
-                if(p_flag===0){
-                    s.playersScore.push(sets.playersScore)
-                }
-            }
-        })
-        if(set_Flag===0){
-            match.sets.push(sets);
-        }
-    }
-    await match.save({ validateBeforeSave: false })
-    const mat = await Match.findById(req.params.id).populate("organiser", "name _id").populate("team_no_1", "_id name players").populate("team_no_2", "_id name players")
-    res.status(200).json(mat);
+    
+
+  
+    res.status(200).json(sets);
 })
