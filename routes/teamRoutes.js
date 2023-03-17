@@ -9,9 +9,9 @@ const {
 
 const router = express.Router();
 
-router.route("/registerTeam").post(registerTeam);
+// router.route("/registerTeam").post(registerTeam);
 
-router.route("/loginTeam").post(loginTeam);
+// router.route("/loginTeam").post(loginTeam);
 
 router.route("/addPlayer/:id").post(addPlayer);
 

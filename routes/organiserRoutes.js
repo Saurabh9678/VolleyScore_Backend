@@ -8,9 +8,9 @@ const {
 
 const router = express.Router();
 
-router.route("/registerOrganiser").post(registerOrganiser);
+// router.route("/registerOrganiser").post(registerOrganiser);
 
-router.route("/loginOrganiser").post(loginOrganiser);
+// router.route("/loginOrganiser").post(loginOrganiser);
 
 router.route("/organiser/:id").get(getOrganiserDetails);
 
