@@ -22,6 +22,7 @@ Password hashing is implemented using bcryptjs. When a user signs up, their pass
 Authentication is implemented using the find method in MongoDB. When a user logs in, their username and password are checked against the database. If the username and password match, the user is authenticated.
 
 # API Endpoints
+Base URL : `DOMAIN-NAME/api/v1`  
 The following API endpoints are available:
 
 # Authentication Endpoints
