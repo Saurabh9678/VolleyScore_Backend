@@ -10,9 +10,9 @@ To install the dependencies, run the following command: `npm install`
 To start the application, run the following command: `npm start`  
 The application will start listening on the port specified in the environment variable PORT (default is 4000).  
 
-Before running the application, make sure to set the following environment variables:
-`DB_URI` = The DB_URI environment variable should contain the MongoDB connection string.  
-PORT = Give a port number (eg: 4000,3000)  
+Before running the application, make sure to set the following environment variables:  
+`DB_URI` = The DB_URI environment variable should contain the MongoDB connection string.   
+`PORT` = Give a port number (eg: 4000,3000)  
 
 
 # Password Hashing
@@ -25,7 +25,7 @@ Authentication is implemented using the find method in MongoDB. When a user logs
 The following API endpoints are available:
 
 # Authentication Endpoints
-`POST /register` : Allows a user/organiser to sign up by providing a username,role and password.
+`POST /register` : Allows a user/organiser to sign up by providing a username,role and password.  
 `POST /login` : Allows a user to log in by providing a username and password.
 
 # Organiser Endpoints
