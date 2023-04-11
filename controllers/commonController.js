@@ -32,29 +32,29 @@ exports.login = catchAsyncErrors(async (req, res, next) => {
   if (digit === 1) {
     const user = await Team.findOne({ email }).select("+password");
 
-    // if (!user) {
-    //   return next(new ErrorHandler("Invalid email or password", 401));
-    // }
+    if (!user) {
+      return next(new ErrorHandler("Invalid email or password", 401));
+    }
 
-    // const isPasswordMatched = await user.comparePassword(password);
+    const isPasswordMatched = await user.comparePassword(password);
 
-    // if (!isPasswordMatched) {
-    //   return next(new ErrorHandler("Invalid email or password", 401));
-    // }
+    if (!isPasswordMatched) {
+      return next(new ErrorHandler("Invalid email or password", 401));
+    }
 
     res.status(200).json(user);
   } else {
     const user = await Organiser.findOne({ email }).select("+password");
 
-    // if (!user) {
-    //   return next(new ErrorHandler("Invalid email or password", 401));
-    // }
+    if (!user) {
+      return next(new ErrorHandler("Invalid email or password", 401));
+    }
 
-    // const isPasswordMatched = await user.comparePassword(password);
+    const isPasswordMatched = await user.comparePassword(password);
 
-    // if (!isPasswordMatched) {
-    //   return next(new ErrorHandler("Invalid email or password", 401));
-    // }
+    if (!isPasswordMatched) {
+      return next(new ErrorHandler("Invalid email or password", 401));
+    }
 
     res.status(200).json(user);
   }
